@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "DS598datafactoryAnna"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"GitHub1_credential": {
+			"value": ""
+		},
+		"GitHub1_properties_typeProperties_username": {
+			"value": "annaandmandy"
+		},
+		"openweatherwebsite_properties_typeProperties_url": {
+			"value": "http://api.openweathermap.org/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
