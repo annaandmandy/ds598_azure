@@ -1,0 +1,19 @@
+{
+	"name": "bolbstorage4openweather",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "bronze",
+				"container": "openweather"
+			}
+		},
+		"schema": {}
+	}
+}
