@@ -1,0 +1,9 @@
+{
+	"name": "DS598datafactoryAnna",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "02f26c3b-1587-4334-97b7-3d64c7ab59aa",
+		"tenantId": "d57d32cc-c121-488f-b07b-dfe705680c71"
+	}
+}
