@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "ForEach1",
+				"name": "historicalDataForLoop",
 				"type": "ForEach",
 				"dependsOn": [],
 				"userProperties": [],
@@ -14,7 +14,7 @@
 					},
 					"activities": [
 						{
-							"name": "Copy data2",
+							"name": "copyHistoricalData",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -36,6 +36,15 @@
 										"type": "JsonReadSettings"
 									}
 								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings"
+									}
+								},
 								"enableStaging": false
 							},
 							"inputs": [
@@ -45,6 +54,12 @@
 									"parameters": {
 										"lon": "71.0589"
 									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "BlobForHistoricalData",
+									"type": "DatasetReference"
 								}
 							]
 						}
