@@ -94,6 +94,30 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/BlobForHistoricalData')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "historicalweather",
+						"container": "bronze"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/bolbstorage4openweather')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -107,14 +131,66 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"folderPath": "bronze",
-						"container": "openweather"
+						"folderPath": "openweather",
+						"container": "bronze"
 					}
 				},
 				"schema": {}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/historical_data_from_web')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "openweatherwebsite_history",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"lat": {
+						"type": "string",
+						"defaultValue": "42.3601"
+					},
+					"lon": {
+						"type": "string",
+						"defaultValue": "-71.0589"
+					},
+					"appid": {
+						"type": "string",
+						"defaultValue": "17c4c97451f2c1de599c0cb708e8f7eb"
+					},
+					"start": {
+						"type": "string",
+						"defaultValue": "@div(sub(ticks(addDays(utcNow(), mul(-7, add(item(), 1)))), ticks('1970-01-01T00:00:00Z')), 10000000)"
+					},
+					"end": {
+						"type": "string",
+						"defaultValue": "@div(sub(ticks(addDays(utcNow(), mul(-7, item()))), ticks('1970-01-01T00:00:00Z')), 10000000)"
+					},
+					"dataType": {
+						"type": "string",
+						"defaultValue": "hour"
+					}
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "HttpServerLocation",
+						"relativeUrl": {
+							"value": "data/2.5/history/city?lat=@{dataset().lat}&lon=@{dataset().lon}&type=@{dataset().dataType}&start=@{dataset().start}&end=@{dataset().end}&appid=@{dataset().appid}",
+							"type": "Expression"
+						}
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/openweatherwebsite_history')]"
 			]
 		},
 		{
@@ -163,79 +239,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/openweatherwebsite')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/historical_data_from_web')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "openweatherwebsite_history",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"lat": {
-						"type": "string",
-						"defaultValue": "42.3601"
-					},
-					"lon": {
-						"type": "string",
-						"defaultValue": "-71.0589"
-					},
-					"appid": {
-						"type": "string",
-						"defaultValue": "17c4c97451f2c1de599c0cb708e8f7eb"
-					},
-					"start": {
-						"type": "string",
-						"defaultValue": "@div(sub(ticks(addDays(utcNow(), mul(-7, add(item(), 1)))), ticks('1970-01-01T00:00:00Z')), 10000000)"
-					},
-					"end": {
-						"type": "string",
-						"defaultValue": "@div(sub(ticks(addDays(utcNow(), mul(-7, item()))), ticks('1970-01-01T00:00:00Z')), 10000000)"
-					},
-					"dataType": {
-						"type": "string",
-						"defaultValue": "hour"
-					}
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "HttpServerLocation",
-						"relativeUrl": "data/2.5/history/city?lat=@{dataset().lat}&lon=@{dataset().lon}&type=@{dataset().dataType}&start=@{dataset().start}&end=@{dataset().end}&appid=@{dataset().appid}"
-					}
-				},
-				"schema": {}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/openweatherwebsite_history')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BlobForHistoricalData')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"folderPath": "bronze",
-						"container": "historicalweather"
-					}
-				},
-				"schema": {}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
 			]
 		},
 		{
@@ -366,7 +369,12 @@
 											"referenceName": "historical_data_from_web",
 											"type": "DatasetReference",
 											"parameters": {
-												"lon": "71.0589"
+												"lat": "42.3601",
+												"lon": "71.0589",
+												"appid": "17c4c97451f2c1de599c0cb708e8f7eb",
+												"start": "@div(sub(ticks(addDays(utcNow(), mul(-7, add(item(), 1)))), ticks('1970-01-01T00:00:00Z')), 10000000)",
+												"end": "@div(sub(ticks(addDays(utcNow(), mul(-7, item()))), ticks('1970-01-01T00:00:00Z')), 10000000)",
+												"dataType": "hour"
 											}
 										}
 									],
