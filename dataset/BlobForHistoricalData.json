@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "bronze",
-				"container": "historicalweather"
+				"folderPath": "historicalweather",
+				"container": "bronze"
 			}
 		},
 		"schema": {}

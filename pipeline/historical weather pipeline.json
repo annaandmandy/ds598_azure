@@ -52,7 +52,12 @@
 									"referenceName": "historical_data_from_web",
 									"type": "DatasetReference",
 									"parameters": {
-										"lon": "71.0589"
+										"lat": "42.3601",
+										"lon": "71.0589",
+										"appid": "17c4c97451f2c1de599c0cb708e8f7eb",
+										"start": "@div(sub(ticks(addDays(utcNow(), mul(-7, add(item(), 1)))), ticks('1970-01-01T00:00:00Z')), 10000000)",
+										"end": "@div(sub(ticks(addDays(utcNow(), mul(-7, item()))), ticks('1970-01-01T00:00:00Z')), 10000000)",
+										"dataType": "hour"
 									}
 								}
 							],
