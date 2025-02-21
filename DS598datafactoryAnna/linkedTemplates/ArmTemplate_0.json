@@ -132,8 +132,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "openweather",
-						"folderPath": "bronze",
+						"folderPath": "bronze/openweather",
 						"container": "ds598hw"
 					}
 				},
