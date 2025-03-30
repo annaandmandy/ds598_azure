@@ -1,5 +1,5 @@
 {
-	"name": "PreprocessAirPollutionData",
+	"name": "PreprocessWeatherData",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {

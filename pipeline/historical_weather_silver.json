@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "PreprocessAirPollutionData",
+						"referenceName": "PreprocessWeatherData",
 						"type": "DataFlowReference"
 					},
 					"compute": {
