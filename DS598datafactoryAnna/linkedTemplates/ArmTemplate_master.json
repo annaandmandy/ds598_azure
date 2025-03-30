@@ -23,6 +23,10 @@
 			"type": "string",
 			"defaultValue": "annaandmandy"
 		},
+		"Stream_data_sliver_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://ds598anna.dfs.core.windows.net/"
+		},
 		"openweatherwebsite_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "http://api.openweathermap.org/"
@@ -30,10 +34,6 @@
 		"openweatherwebsite_history_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://history.openweathermap.org/"
-		},
-		"Stream_data_sliver_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://ds598anna.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -74,14 +74,14 @@
 					"GitHub1_properties_typeProperties_username": {
 						"value": "[parameters('GitHub1_properties_typeProperties_username')]"
 					},
+					"Stream_data_sliver_properties_typeProperties_url": {
+						"value": "[parameters('Stream_data_sliver_properties_typeProperties_url')]"
+					},
 					"openweatherwebsite_properties_typeProperties_url": {
 						"value": "[parameters('openweatherwebsite_properties_typeProperties_url')]"
 					},
 					"openweatherwebsite_history_properties_typeProperties_url": {
 						"value": "[parameters('openweatherwebsite_history_properties_typeProperties_url')]"
-					},
-					"Stream_data_sliver_properties_typeProperties_url": {
-						"value": "[parameters('Stream_data_sliver_properties_typeProperties_url')]"
 					}
 				}
 			},
