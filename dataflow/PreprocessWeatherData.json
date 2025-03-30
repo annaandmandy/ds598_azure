@@ -15,10 +15,10 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "Parquet1",
+						"referenceName": "ParquetWeather",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
+					"name": "sinkToSliver"
 				}
 			],
 			"transformations": [
@@ -35,7 +35,7 @@
 					"name": "derivedColumnDatetimeId"
 				},
 				{
-					"name": "select1"
+					"name": "selectUsedData"
 				}
 			],
 			"scriptLines": [
@@ -121,8 +121,8 @@
 				"          weather_main_value = weather_main",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 sink(allowSchemaDrift: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectUsedData",
+				"selectUsedData sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
 				"     partitionFileNames:['weatherSilver'],",
@@ -131,7 +131,7 @@
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     partitionBy('hash', 1)) ~> sink1"
+				"     partitionBy('hash', 1)) ~> sinkToSliver"
 			]
 		}
 	}

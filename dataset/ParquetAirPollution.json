@@ -1,5 +1,5 @@
 {
-	"name": "ParquetWeather",
+	"name": "ParquetAirPollution",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Stream_data_sliver",
