@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'credential' of 'GitHub1'"
 		},
+		"Stream_data_sliver_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Stream_data_sliver'"
+		},
 		"GitHub1_properties_typeProperties_username": {
 			"type": "string",
 			"defaultValue": "annaandmandy"
@@ -26,6 +30,10 @@
 		"openweatherwebsite_history_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://history.openweathermap.org/"
+		},
+		"Stream_data_sliver_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://ds598anna.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -60,6 +68,9 @@
 					"GitHub1_credential": {
 						"value": "[parameters('GitHub1_credential')]"
 					},
+					"Stream_data_sliver_accountKey": {
+						"value": "[parameters('Stream_data_sliver_accountKey')]"
+					},
 					"GitHub1_properties_typeProperties_username": {
 						"value": "[parameters('GitHub1_properties_typeProperties_username')]"
 					},
@@ -68,6 +79,9 @@
 					},
 					"openweatherwebsite_history_properties_typeProperties_url": {
 						"value": "[parameters('openweatherwebsite_history_properties_typeProperties_url')]"
+					},
+					"Stream_data_sliver_properties_typeProperties_url": {
+						"value": "[parameters('Stream_data_sliver_properties_typeProperties_url')]"
 					}
 				}
 			},
