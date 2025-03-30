@@ -92,6 +92,7 @@
 				"selectUsedData sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
+				"     partitionFileNames:['airpollutionSilver'],",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
